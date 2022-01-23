@@ -15,6 +15,7 @@ const server = http.createServer((req, res) => {
       return
     }
     console.log(data)
+    console.exit(0)
   })
   res.end(fs)
 })
