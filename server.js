@@ -9,10 +9,16 @@ args["port"]
 const port = args.port || process.env.PORT || 3000
 
 fs.readFile("./www/index.html", "utf8", (err, data) => {
+  if (err) {
+    console.error(err)
+    return
+    process.exit(1)
+  }
+
   const server = http.createServer((req, res) => {
     res.statusCode = 200
     res.setHeader("Content-Type", "text/html")
-    res.end("<h1>Hello, World!</h1>")
+    res.end(data)
   })
   
   server.listen(port, ()=> {
